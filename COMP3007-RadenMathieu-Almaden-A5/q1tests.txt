@@ -1,0 +1,250 @@
+Family tree diagram to make it easier to read when testing the code
+
+					Son1 -Siblings- Daughter1
+						/	\
+					       /	 \
+			    Aunt1 -Siblings- Dad1	Mom -Siblings- Uncle1
+				/	\			/	\
+			       /	 \		       /	 \
+			Grandpa1	Grandma1	Grandpa2	Grandma2
+			    |				    |
+			    |				    |
+			Greatpa1			Greatma1
+
+
+~~ Testing male, female ~~
+?- male(son1).
+true. (expected true)
+
+?- male(daughter1).
+false. (expected false)
+
+?- female(daughter1).
+true. (expected true)
+
+?- female(son1).
+false. (expected false)
+
+~~ Testing parents ~~
+?- parent(dad1, son1).
+true . (expected true)
+
+?- parent(dad1, daughter1).
+true . (expected true)
+
+?- parent(mother1, son1).
+false. (expected false)
+
+?- parent(mom1, son1).
+true. (expected true)
+
+?- parent(mom1, daughter1).
+true. (expected true)
+
+~~ Testing parents with aunt/uncle ~~
+
+?- parent(aunt1, son1).
+false. (expected false)
+
+?- parent(uncle1, son1).
+false. (expected false)
+
+?- parent(aunt1, daughter1).
+false. (expected false)
+
+?- parent(uncle1, daughter1).
+false. (expected false)
+
+~~ Testing aunt/uncles ~~
+
+?- aunt(aunt1, son1).
+true . (expected true)
+
+?- aunt(aunt1, daughter1).
+true . (expected true)
+
+?- aunt(uncle1, son1).
+false. (expected false)
+
+?- aunt(uncle1, daughter1).
+false. (expected false)
+
+?- uncle(uncle1, son1).
+true . (expected true)
+
+?- uncle(uncle1, daughter1).
+true . (expected true)
+
+?- uncle(aunt1, son1).
+false. (expected false)
+
+?- uncle(aunt1, daughter1).
+false. (expected false)
+
+~~ Testing is mother/father ~~
+
+?- is_mother(dad1).
+false. (expected false)
+
+?- is_mother(mom1).
+true . (expected true)
+
+?- is_father(dad1).
+true  (expected true)
+
+?- is_father(mom1).
+false. (expected false)
+
+~~ Testing brother/sister ~~
+
+?- sister(daughter1, son1).
+true . (expected true)
+
+?- sister(son1, daughter1).
+false. (expected false)
+
+?- brother(daughter1, son1).
+false. (expected false)
+
+?- brother(son1, daughter1).
+true . (expected true)
+
+~~ Testing Parents (including grandparents as parents) ~~
+
+?- parent(grandpa1, dad1).
+true . (expected true)
+
+?- parent(grandma1, dad1).
+true. (expected true)
+
+?- parent(grandpa1, mom1).
+false. (expected false)
+
+?- parent(grandma1, mom1).
+false. (expected false)
+
+?- parent(grandpa2, dad1).
+false. (expected false)
+
+?- parent(grandma2, dad1).
+false. (expected false)
+
+?- parent(grandpa2, mom1).
+true . (expected true)
+
+?- parent(grandma2, mom1).
+true. (expected true)
+
+~~ Testing GrandFather/GrandMother ~~
+
+?- grandfather(grandpa1, son1).
+true . (expected true)
+
+?- grandfather(grandpa1, daughter1).
+true . (expected true)
+
+?- grandfather(grandma1, son1).
+false. (expected false)
+
+?- grandfather(grandma1, daughter1).
+false. (expected false)
+
+?- grandmother(grandpa1, son1).
+false. (expected false)
+
+?- grandmother(grandpa1, daughter1).
+false. (expected false)
+
+?- grandmother(grandma1, son1).
+true . (expected true)
+
+?- grandmother(grandma1, daughter1).
+true . (expected true)
+
+?- grandfather(grandpa2, son1).
+true . (expected true)
+
+?- grandfather(grandpa2, daughter1).
+true . (expected true)
+
+?- grandfather(grandma2, son1).
+false. (expected false)
+
+?- grandfather(grandma2, daughter1).
+false. (expected false)
+
+?- grandmother(grandpa2, son1).
+false. (expected false)
+
+?- grandmother(grandpa2, daughter1).
+false. (expected false)
+
+?- grandmother(grandma2, son1).
+true . (expected true)
+
+?- grandmother(grandma2, daughter1).
+true . (expected true)
+
+?- grandfather(greatpa1, dad1).
+true . (expected true)
+
+?- grandfather(greatpa1, mom1).
+false. (expected false)
+
+?- grandmother(greatma1, dad1).
+false. (expected false)
+
+?- grandmother(greatma1, mom1).
+true . (expected true)
+
+~~ Testing Father/Mother with Great Grandparents and Grandparents ~~
+
+?- father(greatpa1, grandpa1).
+true. (expected true)
+
+?- father(greatpa1, grandma1).
+false. (expected false)
+
+?- father(greatpa1, grandpa2).
+false. (expected false)
+
+?- father(greatpa1, grandma2).
+false. (expected false)
+
+?- mother(greatma1, grandpa1).
+false. (expected false)
+
+?- mother(greatma1, grandma1).
+false. (expected false)
+
+?- mother(greatma1, grandpa2).
+true. (expected true)
+ 
+?- mother(greatma1, grandma2).
+false. (expected false)
+
+~~ Testing Ancestors ~~
+
+?- ancestor(son1, greatpa1).
+false. (expected false)
+
+?- ancestor(greatpa1, son1).
+true . (expected true)
+
+?- ancestor(daughter1, greatpa1).
+false. (expected false)
+
+?- ancestor(greatpa1, daughter1).
+true . (expected true)
+
+?- ancestor(son1, greatma1).
+false. (expected false)
+
+?- ancestor(greatma1, son1).
+true . (expected true)
+
+?- ancestor(daughter1, greatma1).
+false. (expected false)
+
+?- ancestor(greatma1, daughter1).
+true . (expected true)

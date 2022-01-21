@@ -1,0 +1,19 @@
+#|
+Raden Mathieu Almaden
+101104851
+COMP 3007
+Assignment 1 Question 5
+|#
+
+Question 5 a)
+
+If the interpreter uses applicative-order evaluation, the behavior it'll showcase will be that (x) will be repeatedly called on itself. Meaning it'll go on infinitely.
+This is because in applicative-order, you evaluate the variables/arguments first before doing any continuation
+on the function/equation. Due to the definition of the (x) function, it causes itself to repeat on itself before the equation can continue.
+
+b)
+
+If the interpreter uses normal-order evaluation, the behavior it'll showcase is that it'll cause 1 to be returned because when calling (test 1 (x))
+The if statement within the function will end up being evaluated to true because of how normal-order works. Expanding
+the equation causes the function to be able to evaluate that if statement first before calling (x). Let alone (x) being called at all because of the
+return value of 1.

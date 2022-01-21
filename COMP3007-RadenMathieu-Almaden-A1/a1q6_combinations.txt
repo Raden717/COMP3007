@@ -1,0 +1,47 @@
+#|
+Raden Mathieu Almaden
+101104851
+COMP 3007
+Assignment 1 Question 6
+|#
+
+The behaviour of the following procedure is that once a condition is reached, it becomes an operator
+for the values of a and b.
+If the first condition is reached, a and b will get added.
+If the second condition is reached, a and b will get multiplied.
+If neither condition is reached, a and b will be divided.
+
+For all integer values a, it does not matter because a doesn't change the condition of the of the function. It's irrelavant except for when it's used
+in the final evaluation.
+
+For all integer values b that is greater than 0, a and b will be added together as shown here.
+
+(define (foo a b)
+		((cond ((> b 0) +)((= b 0) *)(else /)) a b))
+
+(foo 0 1) 
+((cond ((> 1 0) +)((= 1 0) *)(else /)) 0 1))
+(+ 0 1)
+1
+We used 1 here as a placeholder to easily show using the substition model. 1 can be replaced with any integer greater than 0 and the following still applies
+
+For integer value 0 for b, a and b will end up multiplying together as shown here.
+
+(define (foo a b)
+		((cond ((> b 0) +)((= b 0) *)(else /)) a b))
+
+(foo 1 0) 
+((cond ((> 0 0) +)((= 0 0) *)(else /)) 1 0))
+(* 1 0)
+0
+
+For integer values that are niether 0 or greater than 0, a will end up being divided by b
+
+(define (foo a b)
+		((cond ((> b 0) +)((= b 0) *)(else /)) a b))
+
+(foo 2 -1) 
+((cond ((> -1 0) +)((= -1 0) *)(else /)) 2 -1))
+(/ 2 -1)
+-2
+We used -1 here as a placeholder to easily show using the substituion model. -1 can be replaced with any integer that is not greater than 0 or 0 and the following still applies.
